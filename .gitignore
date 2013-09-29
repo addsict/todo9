@@ -1,0 +1,8 @@
+*.swp
+.DS_Store
+
+# carton
+local/
+
+# config
+Todo/lib/Todo/Config.pm

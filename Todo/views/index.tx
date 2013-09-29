@@ -1,0 +1,42 @@
+: cascade base
+: around content -> {
+<link rel="stylesheet" href="<: $c.req.uri_for('/css/index.css') :>">
+<h1><: $c.stash.site_name :></h1>
+
+<div class="form">
+    <input type="text" name="todo" placeholder="enter your todo!" />
+    <button id="create" class="btn">create</button>
+</div>
+<div>
+    <h3>in DB</h3>
+    <table id="todo-table" class="table table-striped">
+        <tr>
+            <th>Todo</th>
+            <th>Created date</th>
+            <th>Updated date</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </table>
+</div>
+
+<!-- template -->
+<script type="text/html" id="todo-view-template">
+    <td><input type="text" class="todo" value="<%- todo.todo %>" /></td>
+    <td><%- todo.created_at %></td>
+    <td><%- todo.updated_at %></td>
+    <td><button class="update btn btn-primary">update</button></td>
+    <td><button class="delete btn btn-danger">delete</button></td>
+</script>
+
+<script type="text/javascript">
+require([
+    'App',
+], function (App) {
+    var app = new App({
+        el: $('#main-container')[0],
+    });
+});
+</script>
+: }
+

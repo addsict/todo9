@@ -1,0 +1,9 @@
+requires 'Kossy';
+requires 'DBI';
+requires 'DBD::mysql';
+requires 'Plack::Middleware::Log::Minimal';
+requires 'Config::ENV';
+requires 'Teng';
+requires 'Class::Accessor::Lite';
+requires 'Test::mysqld';
+requires 'Test::Fixture::DBI';

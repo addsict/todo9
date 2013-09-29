@@ -1,0 +1,17 @@
+package Todo::Config;
+
+use Config::ENV 'PLACK_ENV', export => 'config';
+
+config development => +{
+    dsn => 'DATA_SOURCE_NAME',
+    db_user => 'DB_USER',
+    db_password => 'DB_PASSWORD',
+};
+
+config production => +{
+    dsn => 'DATA_SOURCE_NAME',
+    db_user => 'DB_USER',
+    db_password => 'DB_PASSWORD',
+};
+
+1;
