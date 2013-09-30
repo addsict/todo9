@@ -4,8 +4,14 @@ use strict;
 use warnings;
 use utf8;
 use Kossy;
-use Todonize;
+use Todonize (
+    plugins => [qw/User/],
+);
 use Log::Minimal;
+use Data::Dumper;
+use MyApp::DB;
+
+use constant DB_TABLE => 'todo';
 
 filter 'set_title' => sub {
     my $app = shift;
@@ -22,8 +28,11 @@ get '/' => [qw/set_title/] => sub {
     my $todo = Todonize->create(
         title => 'hello',
         is_done => 0,
+        creator => 'yuuki'
     );
-    infof $todo->to_hash();
+    my $dbh = MyApp::DB::dbh();
+    my $todos = Todonize->search_by_creator($dbh, DB_TABLE, 'yuuki');
+    infof $todos;
 
     $c->render('index.tx', { greeting => "Hello" });
 };
