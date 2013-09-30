@@ -1,0 +1,30 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use utf8;
+use Getopt::Long;
+use Data::Dumper;
+use File::Basename;
+use File::Spec;
+
+my $action = $ARGV[0];
+my $plugin = $ARGV[1];
+if (defined($action) && $action eq 'add' && defined($plugin)) {
+    init_plugin($plugin);
+} else {
+    die "Usage: " . "./todonize-plugin add PluginName\n";
+}
+
+sub init_plugin {
+    my $plugin = shift;
+    my %opts;
+    GetOptions(\%opts, qw(
+        database|d=s
+        user|u=s
+    ));
+    my $dir_path = File::Spec->rel2abs(dirname(__FILE__));
+    my $schema_path = File::Spec->catdir($dir_path, '..', 'lib', 'Todonize', 'Plugin', $plugin, 'init.sql');
+    my $cmd = "mysql $opts{database} -u $opts{user} -p < $schema_path";
+    system $cmd;
+}
