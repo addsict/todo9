@@ -40,9 +40,29 @@ sub extend {
 }
 
 sub create {
-    my ($class, %args) = @_;
-    my $todo = Todonize::Model::Todo->new(%args);
-    return $todo->save();
+    my ($class, $args, $dbh, $table) = @_;
+    my $todo = Todonize::Model::Todo->new(%$args);
+    return $todo->save($dbh, $table);
+}
+
+sub get_all {
+    my ($class, $dbh, $table) = @_;
+    return Todonize::Model::Todo->get_all($dbh, $table);
+}
+
+sub get {
+    my ($class, $dbh, $table, $id) = @_;
+    return Todonize::Model::Todo->get($dbh, $table, $id);
+}
+
+sub update {
+    my ($class, $dbh, $table, $id, $args) = @_;
+    return Todonize::Model::Todo->update($dbh, $table, $id, $args);
+}
+
+sub delete {
+    my ($class, $dbh, $table, $id) = @_;
+    return Todonize::Model::Todo->delete($dbh, $table, $id);
 }
 
 1;

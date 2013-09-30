@@ -25,14 +25,23 @@ filter 'set_title' => sub {
 get '/' => [qw/set_title/] => sub {
     my ( $self, $c )  = @_;
 
-    my $todo = Todonize->create(
-        title => 'hello',
-        is_done => 0,
-        creator => 'yuuki'
-    );
     my $dbh = MyApp::DB::dbh();
-    my $todos = Todonize->search_by_creator($dbh, DB_TABLE, 'yuuki');
-    infof $todos;
+    # my $todo = Todonize->create({
+        # title => '眠くない!!!!!!',
+        # is_done => 0,
+        # creator => '眠いさん',
+        # assignee => 'furuyama'
+    # }, $dbh, DB_TABLE);
+    # my $todos = Todonize->search_by_creator($dbh, DB_TABLE, 'yuuki');
+    # my $todos = Todonize->get_all($dbh, DB_TABLE);
+    # infof $todos;
+    # my $todo = Todonize->get($dbh, DB_TABLE, 1);
+    # my $todo = Todonize->update($dbh, DB_TABLE, 16, {
+        # creator => 'aaaaaaa'
+    # });
+    # infof $todo;
+    # Todonize->delete($dbh, DB_TABLE, 5);
+    Todonize->change_assignee($dbh, DB_TABLE, 9, 'tanaka');
 
     $c->render('index.tx', { greeting => "Hello" });
 };
