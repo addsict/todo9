@@ -1,4 +1,4 @@
-package Todonize::Plugin::User;
+package Todonize::Plugin::User::API;
 
 use strict;
 use warnings;

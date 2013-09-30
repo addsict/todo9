@@ -21,7 +21,7 @@ sub import {
 # extend class with plugin
 sub extend {
     my ($class, $plugin_name) = @_;
-    my $plugin_class = 'Todonize::Plugin::' . $plugin_name;
+    my $plugin_class = 'Todonize::Plugin::' . $plugin_name . '::API';
     # load module dynamically
     $plugin_class->require;
     my @new_colms = $plugin_class->columns();
