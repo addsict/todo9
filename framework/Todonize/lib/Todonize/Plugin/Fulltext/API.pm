@@ -5,6 +5,14 @@ use warnings;
 use utf8;
 use Todonize::Plugin::Fulltext::DB;
 
+sub export {
+    return qw(search);
+}
+
+sub columns {
+    return qw();
+}
+
 # @param dbh
 # @param query  e.g. "デート" (utf-8)
 # @param rec_offset
@@ -25,8 +33,8 @@ use Todonize::Plugin::Fulltext::DB;
 #       $res3 = Todonize::Plugin::Fulltext::API::_search($dbh, 'todo_test', 'デート', $offset, $n);
 #   }
 sub search {
-    my ($dbh, $query, $rec_offset, $rec_num) = @_;
-    _search($dbh, 'todo', $query, $rec_offset, $rec_num);
+    my ($dbh, $table, $query, $rec_offset, $rec_num) = @_;
+    _search($dbh, $table, $query, $rec_offset, $rec_num);
 }
 
 # ONLY FOR TESTING
