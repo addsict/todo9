@@ -29,6 +29,7 @@ sub search {
     _search($dbh, 'todo', $query, $rec_offset, $rec_num);
 }
 
+# ONLY FOR TESTING
 sub _search {
     my ($dbh, $table, $query, $rec_offset, $rec_num) = @_;
     my $sql = "select * from $table where match(title) against('+\"$query\"' in boolean mode) limit $rec_offset, $rec_num";
