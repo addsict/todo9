@@ -2,8 +2,6 @@ Todonize - TODO Framework
 ============================
 Embed TODO feature into your awesome application in 3 minutes!
 
-アプリケーションにTODO機能を追加するフレームワーク
-
 概要
 ---------
 **Todonize** はPerlで書かれたアプリケーションにTODO機能を追加するフレームワークです。  
@@ -42,6 +40,7 @@ my $todo = Todonize->update($dbh, $table, 1, {
 ```
 
 - TODOの削除: `delete($dbh, $table, $id)`
+
 ```perl
 Todonize->delete($dbh, $table, 1);
 ```
@@ -72,4 +71,5 @@ sub third_party_method {
 }
 
 1;
+use Log::Minimal;
 ```
