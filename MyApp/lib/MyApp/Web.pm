@@ -5,7 +5,7 @@ use warnings;
 use utf8;
 use Kossy;
 use Todonize (
-    plugins => [qw/User/],
+    plugins => [qw/User Fulltext/],
 );
 use Log::Minimal;
 use Data::Dumper;
@@ -41,7 +41,8 @@ get '/' => [qw/set_title/] => sub {
     # });
     # infof $todo;
     # Todonize->delete($dbh, DB_TABLE, 5);
-    Todonize->change_assignee($dbh, DB_TABLE, 9, 'tanaka');
+    # Todonize->change_assignee($dbh, DB_TABLE, 9, 'rosa');
+    Todonize->search($dbh, DB_TABLE, 'rosa', 0, 10);
 
     $c->render('index.tx', { greeting => "Hello" });
 };

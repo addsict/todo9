@@ -12,7 +12,7 @@ Embed TODO features into your awesome application by simple setup!!
 セットアップ方法
 ---------------------
 ```sh
-$ bin/todonize-setup init
+$ bin/todonize-setup init --database=test --user=addsict
 ```
 
 TODO API
@@ -71,7 +71,7 @@ Todonize->delete($dbh, $table, 1);
 **プラグインのセットアップ方法**
 
 ```sh
-$ bin/todonize-plugin add Fulltext
+$ bin/todonize-plugin add Fulltext --database=test --user=addsict
 ```
 
 **使い方**
@@ -113,6 +113,8 @@ Todonize/
 ALTER TABLE todo ADD COLUMN new_col1 text;
 ALTER TABLE todo ADD COLUMN new_col2 text;
 ```
+
+**Todonize::Plugin::ThirdParty::API モジュール**
 
 ```perl
 package Todonize::Plugin::ThirdParty::API;
